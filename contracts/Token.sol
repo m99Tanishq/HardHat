@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity >=0.5.0 < 0.9.0;
 
+import "../node_modules/hardhat/console.sol";
+
 contract Token{
     string public name = "HardHat Token";
     string public symbole = "HHT";
@@ -19,6 +21,8 @@ contract Token{
     }
 
     function transfer(address to, uint256 amount) external {
+        console.log("Sender balance is %s tokens", balances[msg.sender]);
+        console.log("Sender balance is %s tokens to %s address", amount, to);
         require(balances[msg.sender] >= amount, "Not Enough Tokens");
         require(amount > 0, "Amount must be greater than 0");
         require(to != address(0), "Recipient address cannot be 0x0");
